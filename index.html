@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quem Não Me Segue de Volta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="wrap nav">
+            <a class="brand" href="#inicio">
+                <div class="logo"><svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="5.5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle cx="17.2" cy="6.8" r=".6" fill="#fff" />
+                    </svg></div>
+                <span>Quem Não Me Segue</span>
+            </a>
+            <nav>
+                <a href="#inicio">Início</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#faq">FAQ</a>
+                <button class="theme" id="theme" aria-label="Alternar tema claro/escuro">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="4" />
+                        <path
+                            d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+                    </svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="wrap" id="inicio">
+        <section class="hero">
+            <div>
+                <h1>Descubra quem não te <span>segue de volta</span></h1>
+                <p class="lead">Compare suas listas de seguidores e de seguindo e veja quem não retribui.</p>
+                <div class="privacy">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="11" width="16" height="10" rx="2" />
+                        <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                    </svg>
+                    <span>Seus arquivos são lidos apenas neste navegador. Nada é enviado a servidor nenhum e esta página
+                        não pede senha.</span>
+                </div>
+            </div>
+            <div class="art" aria-hidden="true">
+                <div class="ig"><svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="5.5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle cx="17.2" cy="6.8" r=".6" fill="#fff" />
+                    </svg></div>
+                <div class="chip a"><i></i>
+                    <div><small>Seguidores</small><b id="chipA">301</b></div>
+                </div>
+                <div class="chip b"><i></i>
+                    <div><small>Seguindo</small><b id="chipB">259</b></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="steps">
+                <div>
+                    <div class="step">
+                        <div class="num">1</div>
+                        <div>
+                            <h3>Baixe seus dados no Instagram</h3>
+                            <p>Configurações → Central de Contas → Suas informações e permissões → Baixar suas
+                                informações. Escolha <b>Seguidores e seguindo</b>, formato <b>JSON</b>, e depois extraia
+                                o arquivo .zip.</p>
+                        </div>
+                    </div>
+                    <div class="step" style="margin-bottom:14px">
+                        <div class="num">2</div>
+                        <div>
+                            <h3>Envie os arquivos</h3>
+                        </div>
+                    </div>
+
+                    <div class="drops">
+                        <div class="drop" id="dropF">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" />
+                            </svg>
+                            <h4>Seguidores (followers_*.json)</h4>
+                            <p>Se houver mais de um, selecione todos</p>
+                            <label class="pick">Escolher arquivos<input type="file" id="fileF"
+                                    accept=".json,application/json" multiple></label>
+                            <span class="fname">Nenhum arquivo escolhido</span>
+                        </div>
+                        <div class="drop" id="dropG">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" />
+                            </svg>
+                            <h4>Seguindo (following.json)</h4>
+                            <p>Arraste ou escolha o arquivo</p>
+                            <label class="pick">Escolher arquivo<input type="file" id="fileG"
+                                    accept=".json,application/json"></label>
+                            <span class="fname">Nenhum arquivo escolhido</span>
+                        </div>
+                    </div>
+                    <button class="go" id="go" disabled>Analisar</button>
+                    <div class="msg" id="msg" role="alert"></div>
+                </div>
+
+                <aside class="side">
+                    <h3>Rápido e seguro</h3>
+                    <ul>
+                        <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
+                            </svg>Seus dados ficam no seu navegador</li>
+                        <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="11" width="14" height="9" rx="2" />
+                                <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+                            </svg>Sem envio para servidores</li>
+                        <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12l5 5 9-10" />
+                            </svg>Não precisa de senha</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <section id="results" aria-live="polite">
+            <div class="stats">
+                <div class="stat"><b id="sF">0</b><span>seguidores</span></div>
+                <div class="stat"><b id="sG">0</b><span>seguindo</span></div>
+                <div class="stat hl"><b id="sN">0</b><span>não retribuem</span></div>
+                <div class="stat"><b id="sM">0</b><span>mútuos</span></div>
+            </div>
+
+            <div class="tabs" role="tablist">
+                <button class="tab" role="tab" data-k="nao" aria-selected="true">Não me seguem de volta (<span
+                        id="tN">0</span>)</button>
+                <button class="tab" role="tab" data-k="eu" aria-selected="false">Eu não sigo de volta (<span
+                        id="tE">0</span>)</button>
+                <button class="tab" role="tab" data-k="mut" aria-selected="false">Mútuos (<span
+                        id="tM">0</span>)</button>
+            </div>
+
+            <div class="tools">
+                <input class="search" id="q" type="search" placeholder="Buscar usuário" aria-label="Buscar usuário">
+                <button class="btn2" id="copy">Copiar lista</button>
+                <button class="btn2" id="csv">Baixar CSV</button>
+            </div>
+
+            <div class="list" id="list"></div>
+            <button class="btn2 more" id="more" hidden>Ver mais</button>
+        </section>
+
+        <section class="info" id="sobre">
+            <h2>Sobre</h2>
+            <p>Esta ferramenta compara os arquivos que o próprio Instagram permite baixar da sua conta. Ela mostra quem
+                você segue e não te segue, quem te segue e você não segue, e quem é mútuo. Tudo roda no seu navegador,
+                sem login e sem enviar nada para a internet.</p>
+        </section>
+
+        <section class="info" id="faq">
+            <h2>Perguntas frequentes</h2>
+            <details>
+                <summary>Preciso informar minha senha?</summary>
+                <p>Não. O site nunca pede login. Você só envia os arquivos JSON que baixou do Instagram.</p>
+            </details>
+            <details>
+                <summary>Meus arquivos são enviados para algum servidor?</summary>
+                <p>Não. Os arquivos são lidos localmente pelo navegador e descartados quando você fecha ou atualiza a
+                    página.</p>
+            </details>
+            <details>
+                <summary>Quanto tempo o Instagram leva para liberar os dados?</summary>
+                <p>De alguns minutos a algumas horas. Quando ficar pronto, você recebe um aviso e um link para baixar o
+                    .zip.</p>
+            </details>
+            <details>
+                <summary>Quais arquivos devo usar?</summary>
+                <p>Na pasta "connections/followers_and_following", use followers_1.json (e followers_2.json, se existir)
+                    e following.json.</p>
+            </details>
+            <details>
+                <summary>A data ao lado do usuário é o quê?</summary>
+                <p>É a data em que a pessoa foi adicionada à lista, conforme registrada pelo Instagram.</p>
+            </details>
+        </section>
+    </main>
+
+    <footer>Projeto independente, sem vínculo com o Instagram ou a Meta.</footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
